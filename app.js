@@ -11,13 +11,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Conectar a MongoDB
-const mongoURI = process.env.MONGODB_URI;
+
+const uridb = `mongodb+srv://DarellGutierrez:bLanBGeJYLIVqRLl@proyectotic.7p0eur3.mongodb.net/?retryWrites=true&w=majority&appName=ProyectoTIC`;
+mongoose.connect(uridb) //borré useNewUrlParser y useUnifiedTopology ya que no se usan en las nuevas versiones de node
+.then(() => console.log("base de datos conectada")) 
+.catch(e => console.log(e))
+
+/*const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI).then(() => {
     console.log('Connected to MongoDB Atlas');
 }).catch((error) => {
     console.error('Error connecting to MongoDB Atlas:', error);
 });
-
+*/
 // Configurar express-session para manejar sesiones
 app.use(session({
     secret: process.env.SESSION_SECRET || 'mysecret',
